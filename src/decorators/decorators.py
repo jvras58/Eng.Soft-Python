@@ -8,11 +8,3 @@ def log_execution(func):
         print(f"[LOG] Finalizando {func.__name__}")
         return result
     return wrapper
-
-
-if __name__ == "__main__":
-    @log_execution
-    def sample_task():
-        print("Executando tarefa...")
-
-    sample_task()

@@ -1,12 +1,9 @@
-from src.models.task import Task, TaskStatus
+from api.task.schemas import TaskCreate
 
 class TaskFactory:
-    task_id = 1 
-
-    @classmethod
-    def create_task(cls, description: str, urgent: bool = False) -> Task:
-        task = Task(id=cls.task_id, description=description)
-        if urgent:
-            task.description = "[URGENTE] " + task.description
-        cls.task_id += 1
-        return task
+    @staticmethod
+    def create(task_data: TaskCreate) -> TaskCreate:
+        description = task_data.description
+        if task_data.urgent:
+            description = "[URGENTE] " + description
+        return TaskCreate(description=description, urgent=task_data.urgent)

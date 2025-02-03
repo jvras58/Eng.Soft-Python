@@ -8,4 +8,5 @@ class Config:
         return cls._instance
 
     def load_config(self):
-        self.db_url = "sqlite:///:memory:"
+        self.SQLALCHEMY_DATABASE_URL = "sqlite:///./tasks.db"
+        self.NOTIFICATION_SERVICE_URL = "http://fake-notification-service"

@@ -1,19 +1,24 @@
+
+from api.task.controller import create_task, get_tasks, update_task
+from database.database import get_session
+from services.notification_service import NotificationService
+
 class TaskService:
-    _instance = None
-    _tasks = {}
+    def __init__(self):
+        self.db = get_session()
 
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super(TaskService, cls).__new__(cls)
-        return cls._instance
-
-    def add_task(self, task):
-        self._tasks[task.id] = task
-        from src.services.notification_service import NotificationService
-        NotificationService().notify(f"Tarefa criada: {task.description}")
-
-    def get_task(self, task_id):
-        return self._tasks.get(task_id)
+    def add_task(self, task_data):
+        from factory.tasks_factory import TaskFactory
+        task_data = TaskFactory.create(task_data)
+        db_task = create_task(self.db, task_data, task_data.description)
+        NotificationService().notify(f"Tarefa criada: {db_task.description}")
+        return db_task
 
     def list_tasks(self):
-        return list(self._tasks.values())
+        return get_tasks(self.db)
+
+    def mark_task_done(self, task_id: int):
+        task = update_task(self.db, task_id, "CONCLUIDA")
+        if task:
+            NotificationService().notify(f"Tarefa concluída: {task.description}")
+        return task

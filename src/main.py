@@ -1,30 +1,37 @@
+import uvicorn
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from api.task.router import router as task_router
 
-from commands.commands import CreateTaskCommand, UpdateTaskStatusCommand
-from queries.queries import ListTasksQuery
+app = FastAPI()
 
-def main():
-    # Criação de tarefas
-    cmd1 = CreateTaskCommand("Estudar padrões de projeto", urgent=True)
-    task1 = cmd1.execute()
+# ----------------------------------
+#  APP CORSMiddleware
+# ----------------------------------
+origins = ['*']
 
-    cmd2 = CreateTaskCommand("Implementar testes unitários")
-    task2 = cmd2.execute()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=['*'],
+    allow_headers=['*'],
+)
 
-    # Listar tarefas
-    tasks = ListTasksQuery().execute()
-    print("Tarefas atuais:")
-    for t in tasks:
-        print(t)
+# ----------------------------------
+#   APP ROUTERS
+# ----------------------------------
+app.include_router(task_router, prefix='/task', tags=['task'])
+# ----------------------------------
 
-    # Atualizar status de uma tarefa
-    update_cmd = UpdateTaskStatusCommand(task_id=task1.id)
-    update_cmd.execute()
 
-    # Listar novamente para ver a alteração
-    tasks = ListTasksQuery().execute()
-    print("Após atualização:")
-    for t in tasks:
-        print(t)
+@app.get('/')
+def read_root():
+    return {'message': 'Wellcome to API!'}
 
-if __name__ == "__main__":
-    main()
+
+# ==========================================================================
+# FastAPI Start
+# ==========================================================================
+if __name__ == '__main__':
+    uvicorn.run(app, host='0.0.0.0', port=8000, reload=True)    

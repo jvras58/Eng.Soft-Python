@@ -1,17 +1,21 @@
-from enum import Enum
+from sqlalchemy.orm import Mapped, mapped_column
 
-class TaskStatus(Enum):
+from models.base_model import AbstractBaseModel
+
+import enum
+
+class TaskStatus(enum.Enum):
     PENDENTE = "Pendente"
     CONCLUIDA = "Concluída"
 
-class Task:
-    def __init__(self, id: int, description: str, status: TaskStatus = TaskStatus.PENDENTE):
-        self.id = id
-        self.description = description
-        self.status = status
 
-    def marcar_como_concluido(self):
-        self.status = TaskStatus.CONCLUIDA
+class Task(AbstractBaseModel):
+    """
+    Representa a tabela tarefas no banco de dados.
+    """
 
-    def __repr__(self):
-        return f"<Task {self.id}: {self.description} [{self.status.value}]>"
+    __tablename__ = 'Tasks'
+
+    id: Mapped[int] = mapped_column(primary_key=True, name='id')
+    description: Mapped[str] = mapped_column(name='descricao')
+    status: Mapped[enum] = mapped_column(enum.Enum(TaskStatus), default=TaskStatus.PENDENTE, name='status')
