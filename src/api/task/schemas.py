@@ -1,4 +1,4 @@
-from models.task import TaskStatus
+from src.models.task import TaskStatus
 from pydantic import BaseModel
 from typing import Optional
 

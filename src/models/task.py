@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import Enum as SQLEnum
 
-from models.base_model import AbstractBaseModel
+from src.models.base_model import AbstractBaseModel
 import enum
 
 class TaskStatus(enum.Enum):

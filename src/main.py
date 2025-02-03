@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from api.task.router import router as task_router
+from src.api.task.router import router as task_router
 
 app = FastAPI()
 
@@ -34,4 +34,4 @@ def read_root():
 # FastAPI Start
 # ==========================================================================
 if __name__ == '__main__':
-    uvicorn.run("main:app", host='0.0.0.0', port=8000, reload=True)    
+    uvicorn.run("src.main:app", host='0.0.0.0', port=8000, reload=True)    

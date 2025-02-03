@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from api.task import schemas
-from models.task import Task, TaskStatus
+from src.api.task import schemas
+from src.models.task import Task, TaskStatus
 
 def get_task(db: Session, task_id: int):
     return db.query(Task).filter(Task.id == task_id).first()

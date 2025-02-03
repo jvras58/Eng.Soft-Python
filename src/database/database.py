@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from config.config import Config
+from src.config.config import Config
 
 
 config = Config()

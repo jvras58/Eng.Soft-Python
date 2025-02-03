@@ -1,5 +1,5 @@
-from api.task.schemas import TaskCreate
-from services.task_service import TaskService
+from src.api.task.schemas import TaskCreate
+from src.services.task_service import TaskService
 
 class CreateTaskCommand:
     def __init__(self, task_data: TaskCreate, db):

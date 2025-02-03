@@ -1,4 +1,4 @@
-from adpters.adapter import FakeNotificationService, NotificationServiceAdapter
+from src.adpters.adapter import FakeNotificationService, NotificationServiceAdapter
 
 class NotificationService:
     _instance = None

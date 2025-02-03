@@ -1,4 +1,4 @@
-from api.task.schemas import TaskCreate
+from src.api.task.schemas import TaskCreate
 
 class TaskFactory:
     @staticmethod
