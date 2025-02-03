@@ -1,11 +1,11 @@
-
+from sqlalchemy.orm import Session
 from api.task.controller import create_task, get_tasks, update_task
-from database.database import get_session
 from services.notification_service import NotificationService
+from models.task import TaskStatus
 
 class TaskService:
-    def __init__(self):
-        self.db = get_session()
+    def __init__(self, db: Session):
+        self.db = db
 
     def add_task(self, task_data):
         from factory.tasks_factory import TaskFactory
@@ -18,7 +18,7 @@ class TaskService:
         return get_tasks(self.db)
 
     def mark_task_done(self, task_id: int):
-        task = update_task(self.db, task_id, "CONCLUIDA")
+        task = update_task(self.db, task_id, TaskStatus.CONCLUIDA)
         if task:
             NotificationService().notify(f"Tarefa concluída: {task.description}")
         return task
