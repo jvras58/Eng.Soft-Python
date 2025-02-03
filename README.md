@@ -54,6 +54,21 @@ O objetivo do projeto é desenvolver um sistema simples de gerenciamento de tare
 - **Docker:** Para exemplificar containerização.
 
 
+## Princípios SOLID e Design Patterns
+
+O código deste projeto foi estruturado para demonstrar:
+
+- **SRP (Single Responsibility):** Cada classe ou módulo tem uma única responsabilidade.
+- **OCP (Open/Closed):** O código está aberto a extensões sem a necessidade de modificações em classes existentes.
+- **LSP (Liskov Substitution), ISP (Interface Segregation) e DIP (Dependency Inversion):** São praticados ao longo da implementação.
+- **Design Patterns:**  
+  - **Factory:** Criação de tarefas através de uma fábrica.
+  - **Singleton:** Para a configuração global.
+  - **Adapter:** Integração com serviços externos (notificações).
+  - **Decorator:** Implementação de funcionalidades extras, como logging.
+
+
+
 ### 2. Criar e Ativar o Ambiente Virtual
 
 ```bash
@@ -68,13 +83,32 @@ venv\Scripts\activate      # Windows
 uv sync
 ```
 
+### 4. Aplicar as migrations
+
+```bash
+ alembic upgrade head  #<-- Aplique as migrations da pasta de versions
+```
+
+### 5. Aplique 
+
 ### 4. Executar a Aplicação
 
 ```bash
-uv run src/main.py
+task run
 ```
 
-Você deverá ver a listagem inicial das tarefas, seguido da atualização do status e a listagem final.
+
+### 5. Entrar no docs do Fastapi
+
+```bash
+http://localhost:8000/docs
+```
+
+### 4. Gere uma migrations nova:
+
+```bash
+ alembic revision --autogenerate -m "nome_da_migraçao"  #<-- Dê um nome para a migrations
+```
 
 ## Executando os Testes
 
@@ -84,18 +118,3 @@ Verificar todos os testes juntos, basta executar:
 ```bash
 pytest
 ```
-
-
-
-## Princípios SOLID e Design Patterns
-
-O código deste projeto foi estruturado para demonstrar:
-
-- **SRP (Single Responsibility):** Cada classe ou módulo tem uma única responsabilidade.
-- **OCP (Open/Closed):** O código está aberto a extensões sem a necessidade de modificações em classes existentes.
-- **LSP (Liskov Substitution), ISP (Interface Segregation) e DIP (Dependency Inversion):** São praticados ao longo da implementação.
-- **Design Patterns:**  
-  - **Factory:** Criação de tarefas através de uma fábrica.
-  - **Singleton:** Para a configuração global.
-  - **Adapter:** Integração com serviços externos (notificações).
-  - **Decorator:** Implementação de funcionalidades extras, como logging.
