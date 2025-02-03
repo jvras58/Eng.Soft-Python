@@ -1,5 +1,5 @@
 from typing import Annotated
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 from api.task import schemas
 from commands import commands
@@ -19,12 +19,12 @@ def list_tasks(db: db_session_type):
     return query.execute()
 
 @router.post("/tasks/", response_model=schemas.TaskOut)
-def create_task(task: schemas.TaskCreate, db: db_session_type):
+def create_task(task: schemas.TaskCreate, db: db_session_type, request: Request):
     """
     Adiciona uma nova task ao banco de dados.
     """
     cmd = commands.CreateTaskCommand(task, db)
-    new_task = cmd.execute()
+    new_task = cmd.execute(request)
     return new_task
 
 @router.put("/tasks/{task_id}", response_model=schemas.TaskOut)

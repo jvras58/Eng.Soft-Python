@@ -8,8 +8,10 @@ def get_task(db: Session, task_id: int):
 def get_tasks(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Task).offset(skip).limit(limit).all()
 
-def create_task(db: Session, task: schemas.TaskCreate, description: str):
+def create_task(db: Session, task: schemas.TaskCreate, description: str, request):
     db_task = Task(description=description)
+    db_task.audit_user_ip = request.client.host
+    db_task.audit_user_login = "admin"
     db.add(db_task)
     db.commit()
     db.refresh(db_task)

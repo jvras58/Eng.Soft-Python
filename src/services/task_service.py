@@ -7,10 +7,11 @@ class TaskService:
     def __init__(self, db: Session):
         self.db = db
 
-    def add_task(self, task_data):
+    def add_task(self, task_data, request):
         from factory.tasks_factory import TaskFactory
         task_data = TaskFactory.create(task_data)
-        db_task = create_task(self.db, task_data, task_data.description)
+        
+        db_task = create_task(self.db, task_data, task_data.description, request)
         NotificationService().notify(f"Tarefa criada: {db_task.description}")
         return db_task
 
