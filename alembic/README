@@ -1,0 +1,11 @@
+Generic single-database configuration.
+
+## Migrations com alembic (necessario ainda ajustes)
+
+- para que as migrations seja aplicada com o comando:
+
+```bash
+alembic revision --autogenerate -m "exemple" 
+```
+
+é necessario colocar src no model task.py para ele reconhecer... ainda é necessario ajustes
