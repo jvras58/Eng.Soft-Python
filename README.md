@@ -132,6 +132,16 @@ docker compose up app-homolog # <- iniciar em homolog para prod so trocar -prod
 ```
 > Obs: em ambos é necessario rodar as migrations no modo interativo do docker....
 
+# Para ambiente de homologação
+```bash
+docker compose exec app-homolog sh -c "source .venv/bin/activate && alembic upgrade head"
+```
+
+# Para ambiente de produção
+```bash
+docker compose exec app-prod sh -c "source .venv/bin/activate && alembic upgrade head"
+```
+
 # Ambiente online pelo docker: 
 
 ```bash
