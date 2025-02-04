@@ -20,5 +20,6 @@ class Task(AbstractBaseModel):
     status: Mapped[TaskStatus] = mapped_column(
         SQLEnum(TaskStatus),
         default=TaskStatus.PENDENTE,
+        nullable=False,
         name='status'
     )
