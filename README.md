@@ -117,3 +117,10 @@ Verificar todos os testes juntos, basta executar:
 ```bash
 pytest
 ```
+
+### Extra
+
+>Executar testes especificos:
+```bash
+pytest src/tests/pasta/arquivo.py::nome_do_teste
+```
