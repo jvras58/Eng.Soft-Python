@@ -1,4 +1,4 @@
 services:
   app:
     build: .
-    command: uv run src/main.py
+    command: uv run task run
