@@ -11,3 +11,6 @@ wheels/
 
 # Sqlite database file
 tasks.db
+
+# tests
+.coverage

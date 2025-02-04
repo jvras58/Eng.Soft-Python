@@ -35,6 +35,11 @@ O objetivo do projeto é desenvolver um sistema simples de gerenciamento de tare
 │   └── 🐍 notification_service.py
 ├── 📁 adapters/                # Adapters para integração com serviços externos
 │   └── 🐍 adapter.py
+├── 📁 api/                     # entrypoint da API da aplicação
+│   ├── 📁 task/                # MVC
+│   │   |── 🐍 controller.py
+│   │   │── 🐍 router.py
+│   │   └── 🐍 schemas.py
 ├── 📁 models/                  # Modelos de dados (classe Task e enums)
 │   └── 🐍 task.py
 ├── 📁 config/                  # Configuração global (Singleton)
@@ -42,8 +47,12 @@ O objetivo do projeto é desenvolver um sistema simples de gerenciamento de tare
 ├── 📁 decorators/              # Decorators para funcionalidades (ex.: logging)
 │   └── 🐍 decorators.py
 ├── 📁 tests/                   # Testes unitários, de integração e E2E
-│   ├── unit/
-│   │   └── 🐍 test_models.py
+│   ├── 📁 unit/
+│   │   └── 🐍 test_task.py
+│   ├── 📁 integration/
+│   │   └── 🐍 test_task_integration.py
+│   ├── 📁 e2e/
+│   │   └── 🐍 test_task_flow.py
 └── 🐍 main.py                  # Ponto de entrada da aplicação
 ```
 
@@ -111,14 +120,20 @@ http://localhost:8000/docs
 
 ## Executando os Testes
 
-### 1. Testes Unitários
+### 5. Testes
 
-Verificar todos os testes juntos, basta executar:
 ```bash
+# Executar todos os testes
 pytest
-```
 
-### Extra
+# Executar testes com cobertura
+pytest --cov=src
+
+# Executar testes específicos
+pytest src/tests/unit/
+pytest src/tests/integration/
+pytest src/tests/e2e/
+```
 
 >Executar testes especificos:
 ```bash
