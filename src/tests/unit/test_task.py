@@ -9,7 +9,6 @@ def test_task_como_concluido(task, task_service):
     assert task.status == TaskStatus.CONCLUIDA
 
 
-# pytest src/tests/unit/test_models.py::test_criar_task
 def test_criar_task(task_service):
     """Testa a criação de uma nova tarefa"""
     task_data = TaskCreate(
