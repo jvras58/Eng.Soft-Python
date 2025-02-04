@@ -68,35 +68,34 @@ O código deste projeto foi estruturado para demonstrar:
   - **Decorator:** Implementação de funcionalidades extras, como logging.
 
 
+## Iniciando o Projeto:
 
-### 2. Criar e Ativar o Ambiente Virtual
+### 1. Criar e Ativar o Ambiente Virtual
 
 ```bash
-uv venv
+uv venv # uv já cria e ativa sozinho o ambiente...
 source venv/bin/activate   # Linux/Mac
 venv\Scripts\activate      # Windows
 ```
 
-### 3. Instalar Dependências
+### 2. Instalar Dependências
 
 ```bash
 uv sync
 ```
 
-### 4. Aplicar as migrations
+### 3. Aplicar as migrations
 
 ```bash
  alembic upgrade head  #<-- Aplique as migrations da pasta de versions
 ```
 
-### 5. Aplique 
 
 ### 4. Executar a Aplicação
 
 ```bash
 task run
 ```
-
 
 ### 5. Entrar no docs do Fastapi
 
