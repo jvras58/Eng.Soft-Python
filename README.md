@@ -118,6 +118,22 @@ http://localhost:8000/docs
  alembic revision --autogenerate -m "nome_da_migraçao"  #<-- Dê um nome para a migrations
 ```
 
+### Usando o docker:
+>Garanta que tenha o engine do docker instalado é rodando...
+
+```bash
+docker compose up   # <- Irá iniciar ambos ambientes (homolog e prod)
+```
+
+# Ambientes separados:
+
+```bash
+docker compose up app-homolog # <- iniciar em homolog para prod so trocar -prod 
+```
+
+> Obs: em ambos é necessario rodar as migrations no modo interativo do docker....
+
+
 ## Executando os Testes
 
 ### 5. Testes

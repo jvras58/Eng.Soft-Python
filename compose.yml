@@ -1,4 +1,20 @@
 services:
-  app:
-    build: .
-    command: uv run task run
+  app-homolog:
+    build:
+      context: .
+      args:
+        ENVIRONMENT: homolog
+    environment:
+      - ENVIRONMENT=homolog
+    ports:
+      - "8001:8000"
+
+  app-prod:
+    build:
+      context: .
+      args:
+        ENVIRONMENT: prod
+    environment:
+      - ENVIRONMENT=prod
+    ports:
+      - "8000:8000"
