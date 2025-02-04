@@ -130,9 +130,14 @@ docker compose up   # <- Irá iniciar ambos ambientes (homolog e prod)
 ```bash
 docker compose up app-homolog # <- iniciar em homolog para prod so trocar -prod 
 ```
-
 > Obs: em ambos é necessario rodar as migrations no modo interativo do docker....
 
+# Ambiente online pelo docker: 
+
+```bash
+http://127.0.0.1:8001  # <- homolog 
+http://127.0.0.1:8000  # <- prod
+```
 
 ## Executando os Testes
 
