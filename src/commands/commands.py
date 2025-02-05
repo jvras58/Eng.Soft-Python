@@ -16,3 +16,11 @@ class UpdateTaskStatusCommand:
 
     def execute(self):
         return TaskService(self.db).mark_task_done(self.task_id)
+
+class GetTaskCommand:
+    def __init__(self, task_id: int, db):
+        self.task_id = task_id
+        self.db = db
+
+    def execute(self):
+        return TaskService(self.db).get_task(self.task_id)

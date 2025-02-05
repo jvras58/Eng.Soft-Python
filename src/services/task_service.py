@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from src.api.task.controller import create_task, get_tasks, update_task
+from src.api.task.controller import create_task, get_task, get_tasks, update_task
 from src.services.notification_service import NotificationService
 from src.models.task import TaskStatus
 
@@ -17,6 +17,9 @@ class TaskService:
 
     def list_tasks(self):
         return get_tasks(self.db)
+    
+    def get_task(self, task_id:int):
+        return get_task(self.db, task_id)
 
     def mark_task_done(self, task_id: int):
         task = update_task(self.db, task_id, TaskStatus.CONCLUIDA)

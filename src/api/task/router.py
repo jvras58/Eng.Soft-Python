@@ -18,6 +18,17 @@ def list_tasks(db: db_session_type):
     query = queries.ListTasksQuery(db)
     return query.execute()
 
+@router.get('/task/{task_id}', response_model=schemas.TaskOut)
+def get_task(task_id: int, db: db_session_type):
+    """
+    Obtém um task do banco de dados pelo Id.
+    """
+    cmd = commands.GetTaskCommand(task_id, db)
+    get_task = cmd.execute()
+    if get_task is None:
+        raise HTTPException(status_code=404, detail="Tarefa não encontrada")
+    return get_task
+
 @router.post("/tasks/", response_model=schemas.TaskOut)
 def create_task(task: schemas.TaskCreate, db: db_session_type, request: Request):
     """

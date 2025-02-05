@@ -32,3 +32,12 @@ def test_listar_tasks(client, task):
     assert response.status_code == 200
     data = response.json()
     assert len(data) >= 1
+
+def test_get_task(client, task):
+    """Testa obter uma tarefa pelo id"""
+    response = client.get(f"/task/task/{task.id}")
+    
+    assert response.status_code == 200
+    data = response.json()
+    assert data["id"] == task.id
+    assert data["description"] == task.description
